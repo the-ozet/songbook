@@ -1,0 +1,33 @@
+{
+  "name": "bluehole",
+  "version": "1.0.0",
+  "description": "Story platform",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run build:toc && parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:toc && parcel build index.html --public-url ./",
+    "build:toc": "node generate-toc.js", 
+    "deploy": "npm run build && npm run deploy:publish && npm run deploy:create-invalidation",
+    "deploy:publish": "aws s3 sync ./dist/ s3://firewhale.club/btr --exclude '.git/*'",
+    "deploy:create-invalidation": "aws cloudfront create-invalidation --distribution-id EFNNUQAYWRSHF --paths \"/btr/*\""
+  },
+  "staticFiles": {
+    "staticPath": "public",
+    "watcherGlob": "**"
+  },
+  "author": "Scott Blumenthal",
+  "license": "ISC",
+  "dependencies": {
+    "archieml": "^0.4.2",
+    "marked": "^0.6.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-transition-group": "^4.0.0"
+  },
+  "devDependencies": {
+    "parcel": "^1.12.3",
+    "parcel-plugin-static-files-copy": "^2.0.0",
+    "sass": "^1.19.0"
+  }
+}
