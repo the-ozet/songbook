@@ -1,12 +1,15 @@
 type: cover
-title: The Blue Hole Tabernacle Revival
+title: A Scale Unfamiliar: OZET Songs
 
 [sections]
 * credits
 []
 
 [+credits]
+byline: by Scott Blumenthal and Aaron Meicht
+[]
+
+[+commented]
 image-bg: bh-postcard.jpg
 audio-bg: theme-rough2.mp3
-byline: by Scott Blumenthal
 []

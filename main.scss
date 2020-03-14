@@ -1,9 +1,8 @@
-$serif: Georgia, 'Times New Roman', Times, serif;
-$sans: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+$serif: Georgia, "Times New Roman", Times, serif;
+$sans: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 $col-width: 600px;
 $pag-button-size: 50px;
 $pag-bg: #ddd;
-
 
 @mixin page-width() {
   max-width: $col-width;
@@ -17,6 +16,13 @@ $pag-bg: #ddd;
   transform: translateX(-50%);
 }
 
+@mixin header-text($fs: 18px) {
+  text-align: center;
+  font-weight: normal;
+  font-family: $sans;
+  font-size: $fs;
+}
+
 @mixin grainy-bg($img) {
   background: #daedfe;
   background-image: url($img);
@@ -24,8 +30,8 @@ $pag-bg: #ddd;
   background-position: -50% -50%;
 
   &:after {
-    content: '';
-    background-image: url('./public/images/grainy-1.png');
+    content: "";
+    background-image: url("./public/images/grainy-1.png");
     height: 300vh;
     width: 300vw;
     top: -100%;
@@ -37,39 +43,41 @@ $pag-bg: #ddd;
 }
 
 @keyframes grain {
-  0%, 100% { transform:translate(0, 0) }
-  10% { transform:translate(-5%, -10%) }
-  20% { transform:translate(-15%, 5%) }
-  30% { transform:translate(7%, -25%) }
-  40% { transform:translate(-5%, 25%) }
-  50% { transform:translate(-15%, 10%) }
-  60% { transform:translate(15%, 0%) }
-  70% { transform:translate(0%, 15%) }
-  80% { transform:translate(3%, 35%) }
-  90% { transform:translate(-10%, 10%) }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -10%);
+  }
+  20% {
+    transform: translate(-15%, 5%);
+  }
+  30% {
+    transform: translate(7%, -25%);
+  }
+  40% {
+    transform: translate(-5%, 25%);
+  }
+  50% {
+    transform: translate(-15%, 10%);
+  }
+  60% {
+    transform: translate(15%, 0%);
+  }
+  70% {
+    transform: translate(0%, 15%);
+  }
+  80% {
+    transform: translate(3%, 35%);
+  }
+  90% {
+    transform: translate(-10%, 10%);
+  }
 }
 
 body {
   margin: 0;
-}
-
-.story {
-  // background: #daedfe;
-  // background-image: url('./public/images/bh-postcard.jpg');
-  // background-size: cover;
-  // background-position: -50% -50%;
-
-  // &:after {
-  //   content: '';
-  //   background-image: url('./public/images/grainy-1.png');
-  //   height: 300vh;
-  //   width: 300vw;
-  //   top: -100%;
-  //   left: -50%;
-  //   opacity: 0.4;
-  //   position: fixed;
-  //   animation: grain 8s steps(10) infinite;
-  // }
 }
 
 .chapter {
@@ -102,7 +110,7 @@ body {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    font-family: sans-serif;
+    @include header-text(24px);
 
     .chapter-number {
       font-size: 18px;
@@ -111,12 +119,11 @@ body {
     }
 
     .chapter-title::after {
-      content: '';
+      content: "";
       display: block;
       border-bottom: 1px solid #000;
       width: 150px;
       margin: 30px auto;
-
     }
   }
 
@@ -137,14 +144,14 @@ body {
     background: #fff;
     padding-left: 40px;
     padding-right: 40px;
-    opacity: .8;
+    opacity: 0.8;
   }
 
   .content {
     @include page-width();
 
     p {
-      text-indent: 1em;
+      // text-indent: 1em;
       line-height: 1.3;
       font-family: $serif;
       font-size: 19px;
@@ -161,7 +168,7 @@ body {
     .image-inset {
       width: 100%;
       margin: 30px 0;
-      
+
       img {
         padding: 15px;
         border: 1px solid #ddd;
@@ -189,7 +196,8 @@ body {
       margin-top: 10px;
       border-collapse: collapse;
 
-      td, th {
+      td,
+      th {
         font-family: Arial, Helvetica, sans-serif;
         border: 1px solid #222;
         border-collapse: collapse;
@@ -266,7 +274,7 @@ body {
 
       button {
         $audio-control-dimension: 30px;
-        background: url('./public/images/vol-ON.svg') no-repeat;
+        background: url("./public/images/vol-ON.svg") no-repeat;
         height: $audio-control-dimension;
         width: $audio-control-dimension;
         margin-top: ($pag-button-size - $audio-control-dimension) / 2;
@@ -275,7 +283,7 @@ body {
       }
 
       &.muted button {
-        background-image: url('./public/images/vol-MUTE.svg');
+        background-image: url("./public/images/vol-MUTE.svg");
       }
     }
 
@@ -286,7 +294,7 @@ body {
 
       button {
         margin-left: 20px;
-        background: url('./public/images/toc.png') no-repeat;
+        background: url("./public/images/toc.png") no-repeat;
         background-size: contain;
         background-position: center;
         overflow: hidden;
@@ -303,13 +311,12 @@ body {
 
       button {
         display: inline-block;
-        width: $pag-button-size * .7;
+        width: $pag-button-size * 0.7;
         height: $pag-button-size;
         margin: 0;
         font-size: 20px;
       }
     }
-
   }
 }
 
@@ -332,14 +339,12 @@ body {
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-  
-  .chapter:not([data-slug=cover]) {
+  .chapter:not([data-slug="cover"]) {
     .video-bg,
     .image-bg {
       display: none;
     }
   }
-  
 }
 
 .image-bg {
@@ -361,7 +366,7 @@ body {
 
   header {
     padding: 10px 0 0;
-    font-weight: bold; 
+    font-weight: bold;
   }
 
   ol {
@@ -373,7 +378,7 @@ body {
       list-style-type: none;
 
       li::before {
-        content: 'Cover Page: '
+        content: "Cover Page: ";
       }
     }
   }
@@ -382,7 +387,6 @@ body {
     margin: 0;
     padding: 10px 0 0;
     cursor: pointer;
-
   }
 }
 
@@ -402,7 +406,6 @@ body {
 // COVER STYLES
 
 [data-slug="cover"] {
-
   $cover-color: rgba(255, 250, 231, 1);
 
   .content {
@@ -410,11 +413,10 @@ body {
     flex-flow: column;
     justify-content: center;
     height: calc(100vh - 70px);
-    color: $cover-color;
+    // color: $cover-color;
 
     h2 {
-      font-size: 30px;
-      font-family: $serif;
+      @include header-text(30px);
     }
 
     h2 .chapter-title::after {
@@ -429,7 +431,7 @@ body {
   .mask {
     display: none;
   }
-  
+
   .image-bg {
     background-color: #000;
     background-position-x: 20%;
@@ -440,6 +442,4 @@ body {
       background-position-x: 4%;
     }
   }
-
-
-} 
+}
