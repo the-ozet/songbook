@@ -1,0 +1,31 @@
+type: frontmatter
+title: Credits
+
+[sections]
+* authors
+[]
+
+[+authors]
+
+Created by Scott Blumenthal and Aaron Meicht
+
+{.pre}
+content:
+Music by Aaron Meicht
+Words by Scott Blumenthal
+
+Daniel Baker - Vocals
+Scott Blumenthal - Vocals, Acoustic Guitar
+Kate Gentile - Drums
+Devin Hoff - Electric Bass
+Taylor Levine - Electric Guitar
+Aaron Meicht - Vocals, Keyboards, Trumpet
+
+Cha See - Lighting Designer
+Zack __ - Associate Lighting Designer
+Broken Chord - Sound Designer
+Phillip Peglow - Sound Mixer
+:end
+{}
+
+[]

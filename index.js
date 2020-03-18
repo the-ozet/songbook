@@ -194,6 +194,7 @@ function Chapter(props) {
   function getChapterName() {
     switch (chapterType) {
       case "cover":
+      case "frontmatter":
         return null;
       case "appendix":
         return "Appendix";
@@ -203,7 +204,6 @@ function Chapter(props) {
   }
 
   function getChapterNumber() {
-    console.log("my chapter type?", chapterType, chapterTitle, CHAPTERS);
     const number = CHAPTERS.filter(c => c.type === chapterType).findIndex(
       c => c.title === chapterTitle
     );
@@ -319,6 +319,7 @@ function TableOfContents(props) {
       <div className="table-of-contents">
         <header>Table of Contents</header>
         {renderList("cover")}
+        {renderList("frontmatter")}
         {renderList("chapter", `${CHAPTER_NAME}s`)}
         {renderList("appendix", `Appendices`)}
       </div>
@@ -506,6 +507,10 @@ function Section(props) {
     });
   }
 
+  function mdLineToInnerHTML(line) {
+    return { __html: marked(line, { renderer: markedRenderer }) };
+  }
+
   const renderLines = lines.map((l, i) => {
     const { type, value } = l;
     const lineProps = {
@@ -571,31 +576,28 @@ function Section(props) {
             />
           </figure>
         );
-      case "catalog":
-        // return null;
-        // TK TK TK
-        const tds = value.split("~").map((col, i) => {
-          return <td key={`col-${i}`}>{col}</td>;
+      case "pre":
+        const { content = "" } = value;
+        const preLines = content.split("\n").map((line, i) => {
+          return (
+            <span
+              key={`pre-line-${i}`}
+              dangerouslySetInnerHTML={mdLineToInnerHTML(line)}
+            />
+          );
         });
         return (
-          <table className="catalog">
-            <thead>
-              <tr>
-                <th>Tape#</th>
-                <th>Date</th>
-                <th>Location</th>
-                <th>Ftg.</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>{tds}</tr>
-            </tbody>
-          </table>
+          <div {...lineProps} className="preformatted">
+            {preLines}
+          </div>
         );
       default:
-        const html = { __html: marked(value, { renderer: markedRenderer }) };
-        return <p {...lineProps} dangerouslySetInnerHTML={html}></p>;
+        return (
+          <p
+            {...lineProps}
+            dangerouslySetInnerHTML={mdLineToInnerHTML(value)}
+          ></p>
+        );
     }
   });
 
