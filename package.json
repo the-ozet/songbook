@@ -26,7 +26,7 @@
     "react-transition-group": "^4.0.0"
   },
   "devDependencies": {
-    "parcel": "^1.12.3",
+    "parcel": "^2.8.2",
     "parcel-plugin-static-files-copy": "^2.0.0",
     "sass": "^1.19.0"
   }
